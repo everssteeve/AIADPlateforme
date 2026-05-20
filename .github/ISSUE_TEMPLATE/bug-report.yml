@@ -1,0 +1,62 @@
+name: "Bug Report"
+description: "Signaler un écart entre comportement observé et SPEC"
+title: "bug: [description courte]"
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **SDD Mode** — Un bug est un écart entre le code et la SPEC.
+        Si aucune SPEC ne couvre ce comportement, c'est un `/sdd fact` à capturer d'abord.
+
+  - type: input
+    id: spec
+    attributes:
+      label: SPEC de référence
+      description: "ID de la SPEC dont ce comportement dévie (ex: SPEC-001-2-scoring-engine)"
+      placeholder: "SPEC-00X-N-…"
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Sévérité
+      options:
+        - "critique — RLS/sécurité/données"
+        - "haute — fonctionnel bloquant"
+        - "moyenne — fonctionnel dégradé"
+        - "faible — cosmétique"
+    validations:
+      required: true
+
+  - type: textarea
+    id: observed
+    attributes:
+      label: Comportement observé
+      description: "Ce qui se passe actuellement"
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Comportement attendu (selon la SPEC)
+      description: "Ce qui devrait se passer selon le critère d'acceptation concerné"
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Étapes pour reproduire
+      value: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Contexte technique
+      description: "Version Node, navigateur, logs d'erreur, etc."

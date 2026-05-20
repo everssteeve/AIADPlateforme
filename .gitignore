@@ -1,0 +1,25 @@
+# deps
+node_modules/
+.pnp
+.pnp.js
+
+# Next.js
+.next/
+out/
+
+# env — JAMAIS committer les secrets
+.env
+.env.local
+.env.test
+.env.*.local
+
+# Supabase local
+supabase/.branches
+supabase/.temp
+
+# Claude Code — local settings (chemins machine-spécifiques)
+.claude/settings.local.json
+
+# misc
+.DS_Store
+*.pem

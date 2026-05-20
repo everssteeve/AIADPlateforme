@@ -1,0 +1,65 @@
+name: "Intent Statement"
+description: "Capturer une intention humaine (POURQUOI) avant tout développement"
+title: "INTENT-00X — [titre court]"
+labels: ["intent", "sdd-mode"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **SDD Mode — Principe Human Authorship** : La paternité de l'intention ne se délègue pas.
+        Cet Intent Statement doit être rédigé par un humain identifiable.
+        Il servira de référence à toutes les SPECs et ne doit pas être modifié par un agent sans validation humaine.
+
+  - type: input
+    id: author
+    attributes:
+      label: Auteur (humain)
+      description: "Nom de la personne qui formule cette intention"
+      placeholder: "Prénom Nom"
+    validations:
+      required: true
+
+  - type: textarea
+    id: why
+    attributes:
+      label: Pourquoi — Le problème à résoudre
+      description: "Quelle douleur, quel besoin, quel objectif business ?"
+      placeholder: "Les devs seniors n'ont pas de moyen structuré pour…"
+    validations:
+      required: true
+
+  - type: textarea
+    id: who
+    attributes:
+      label: Pour qui
+      description: "Persona(s) ciblé(s)"
+      placeholder: "Sophie (dev senior) / Gérard (DSI)"
+    validations:
+      required: true
+
+  - type: textarea
+    id: success
+    attributes:
+      label: Critère de succès
+      description: "Comment savoir que l'intention est réalisée ?"
+      placeholder: "80 % des devs seniors peuvent soumettre un diagnostic en < 10 min"
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: Hors scope
+      description: "Ce que cette intention N'inclut PAS (important pour borner)"
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priorité
+      options:
+        - "P0 — Bloquant"
+        - "P1 — Haute"
+        - "P2 — Normale"
+        - "P3 — Basse"
+    validations:
+      required: true

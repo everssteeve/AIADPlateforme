@@ -1,0 +1,72 @@
+name: "Nouvelle SPEC"
+description: "Proposer une nouvelle spécification technique liée à un Intent"
+title: "SPEC-00X-N — [titre court]"
+labels: ["spec", "sdd-mode"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **SDD Mode** — Remplir ce template génère un Intent Statement prêt pour `/sdd spec`.
+        La SPEC sera validée via l'Execution Gate (SQS ≥ 4/5) avant tout développement.
+
+  - type: input
+    id: intent
+    attributes:
+      label: Intent parent
+      description: "ID de l'Intent Statement (ex: INTENT-001-diagnostic-equipe)"
+      placeholder: "INTENT-00X-…"
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Contexte
+      description: "Quel problème cette SPEC résout-elle ? Pour qui ?"
+      placeholder: "Les devs seniors ont besoin de…"
+    validations:
+      required: true
+
+  - type: textarea
+    id: behaviour
+    attributes:
+      label: Comportement attendu (Input / Processing / Output)
+      description: "Décrire le flux complet — Input entrant, traitement, Output produit"
+      value: |
+        **Input** :
+
+        **Processing** :
+
+        **Output** :
+    validations:
+      required: true
+
+  - type: textarea
+    id: edge_cases
+    attributes:
+      label: Cas limites (≥ 3)
+      description: "Lister les comportements aux limites — condition anormale → réponse attendue"
+      placeholder: |
+        - Si X alors Y
+        - Si A alors B
+        - Si Z alors W
+    validations:
+      required: true
+
+  - type: dropdown
+    id: format
+    attributes:
+      label: Format SPEC
+      description: "EARS recommandé pour sécurité/compliance/API publics"
+      options:
+        - "prose (standard)"
+        - "EARS (strict — R1–R7 linter)"
+    validations:
+      required: true
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dépendances
+      description: "SPECs parentes ou fichiers source requis"
+      placeholder: "SPEC-001-1-schema-db (schéma DB requis)"
