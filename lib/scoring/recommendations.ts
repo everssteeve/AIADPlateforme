@@ -1,12 +1,15 @@
 /**
  * @spec SPEC-001-2-scoring-engine
+ * @spec SPEC-001-3-api-diagnostic
  * @intent INTENT-001-diagnostic-equipe
  * @verified-by tests/unit/scoring/recommendations.test.ts
+ * @verified-by tests/integration/api/diagnostic.test.ts
  * @governance AIAD-RGESN
  *
  * Source de vérité : SPEC-001-2 §2.ter
  */
-import type { DimensionId } from "./types";
+import { DIMENSIONS } from "./questions";
+import type { DiagnosticScore, DimensionId, Recommendation } from "./types";
 
 const GLOBAL_RECOMMENDATIONS: Record<1 | 2 | 3 | 4, string[]> = {
 	1: [
@@ -38,10 +41,7 @@ const GLOBAL_RECOMMENDATIONS: Record<1 | 2 | 3 | 4, string[]> = {
 	],
 };
 
-const DIMENSION_RECOMMENDATIONS: Record<
-	DimensionId,
-	Record<1 | 2 | 3 | 4, string>
-> = {
+const DIMENSION_RECOMMENDATIONS: Record<DimensionId, Record<1 | 2 | 3 | 4, string>> = {
 	tools: {
 		1: "Explorez les agents IA de codage (Claude Code, Cursor) au-delà de la simple auto-complétion",
 		2: "Configurez un fichier CLAUDE.md et connectez des MCP pour structurer le contexte de votre agent",
@@ -84,9 +84,26 @@ export function getGlobalRecommendations(level: 1 | 2 | 3 | 4): string[] {
 	return GLOBAL_RECOMMENDATIONS[level];
 }
 
-export function getDimensionRecommendation(
-	dimensionId: DimensionId,
-	level: 1 | 2 | 3 | 4,
-): string {
+export function getDimensionRecommendation(dimensionId: DimensionId, level: 1 | 2 | 3 | 4): string {
 	return DIMENSION_RECOMMENDATIONS[dimensionId][level];
+}
+
+export function generateRecommendations(score: DiagnosticScore): Recommendation[] {
+	const recs: Recommendation[] = [];
+
+	for (const text of getGlobalRecommendations(score.globalLevel)) {
+		recs.push({ scope: "global", text });
+	}
+
+	for (const [i, dim] of DIMENSIONS.entries()) {
+		const raw = score.dimScores[i] ?? 0;
+		const level: 1 | 2 | 3 | 4 = raw < 1.75 ? 1 : raw < 2.5 ? 2 : raw < 3.25 ? 3 : 4;
+		recs.push({
+			scope: "dimension",
+			dimensionId: dim.id,
+			text: getDimensionRecommendation(dim.id, level),
+		});
+	}
+
+	return recs;
 }

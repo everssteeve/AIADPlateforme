@@ -12,13 +12,7 @@ export type DiagnosticScore = {
 	dimScores: number[];
 };
 
-export type DimensionId =
-	| "tools"
-	| "process"
-	| "docs"
-	| "quality"
-	| "collab"
-	| "vision";
+export type DimensionId = "tools" | "process" | "docs" | "quality" | "collab" | "vision";
 
 export type Dimension = {
 	id: DimensionId;
@@ -31,4 +25,10 @@ export type Question = {
 	dimension: number;
 	text: string;
 	options: [string, string, string, string];
+};
+
+export type Recommendation = {
+	scope: "global" | "dimension";
+	dimensionId?: DimensionId;
+	text: string;
 };

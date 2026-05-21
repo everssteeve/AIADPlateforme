@@ -8,7 +8,7 @@
 |----|-------|---------------|--------|-----|--------|----|
 | [SPEC-001-1](SPEC-001-1-schema-db.md) | Schéma DB diagnostic | INTENT-001 | EARS | 5/5 | done | — |
 | [SPEC-001-2](SPEC-001-2-scoring-engine.md) | Moteur de scoring & questions | INTENT-001 | EARS | 5/5 | done | — |
-| [SPEC-001-3](SPEC-001-3-api-diagnostic.md) | API routes diagnostic | INTENT-001 | EARS | À évaluer | draft | — |
+| [SPEC-001-3](SPEC-001-3-api-diagnostic.md) | API routes diagnostic | INTENT-001 | EARS | 5/5 | done | — |
 | [SPEC-001-4](SPEC-001-4-wizard-ui.md) | Wizard UI multi-étapes | INTENT-001 | EARS | À évaluer | draft | — |
 | [SPEC-001-5](SPEC-001-5-page-resultats.md) | Page résultats + lien SDD Mode | INTENT-001 | EARS | À évaluer | draft | — |
 

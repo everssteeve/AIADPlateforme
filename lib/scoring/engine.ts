@@ -23,9 +23,7 @@ export function computeScore(answers: DiagnosticAnswers): DiagnosticScore {
 	for (let i = 0; i < QUESTION_COUNT; i++) {
 		const val = answers[i];
 		if (val !== 1 && val !== 2 && val !== 3 && val !== 4) {
-			throw new RangeError(
-				`Question ${i} has invalid value: ${val} (expected 1, 2, 3 or 4)`,
-			);
+			throw new RangeError(`Question ${i} has invalid value: ${val} (expected 1, 2, 3 or 4)`);
 		}
 	}
 
